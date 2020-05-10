@@ -11,9 +11,20 @@
 |
 */
 
+use DB;
+use App\Course;
+
+
 $router->get('/', function () use ($router) {
+
     return $router->app->version();
 });
 
 // generate random key
 $router->get('/key', function(){ return str_random(32); });
+
+// test input to mongodb
+$router->get('/testdb/{title}', function ($title) {
+
+    dd('test', Course::create(['title'=>$title])); // dummy dump
+});
